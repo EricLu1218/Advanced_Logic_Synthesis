@@ -1,0 +1,11 @@
+.model sample02
+.inputs a b c d e f
+.outputs g h i
+.names i
+1
+.names a d h
+00 1
+.names d b c a g
+0111 1
+1111 1
+.end

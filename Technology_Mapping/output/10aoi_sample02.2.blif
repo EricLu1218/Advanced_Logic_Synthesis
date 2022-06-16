@@ -1,0 +1,38 @@
+.model sample02
+.inputs a b c d e f
+.outputs g h i
+.names y665 i_0 i
+01 1
+10 1
+11 1
+.names i_0
+1
+.names f x665_0 y665
+00 1
+.names e d x665_0
+01 1
+10 1
+11 1
+.names a d h
+00 1
+.names u665 g_0 g
+11 1
+.names b r665 g_0
+11 1
+.names a c r665
+11 1
+.names r665 u665_0 u665
+01 1
+10 1
+11 1
+.names s665 p665 u665_0
+01 1
+10 1
+11 1
+.names c p665
+0 1
+.names a d s665
+01 1
+10 1
+11 1
+.end

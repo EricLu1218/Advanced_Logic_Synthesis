@@ -1,0 +1,535 @@
+.model z4ml
+.inputs a b c d e f g
+.outputs h i j k
+.names d a g k
+001 1
+010 1
+100 1
+111 1
+.names j_6 j_5 j_4 j
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names h814 y813 j_4
+01 1
+10 1
+11 1
+.names x813 w813 v813 y813
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names v813_0 v813_1 v813
+11 1
+.names d f v813_1
+11 1
+.names a c v813_0
+11 1
+.names w813_0 w813_1 w813
+11 1
+.names f g w813_1
+11 1
+.names d c w813_0
+11 1
+.names x813_0 x813_1 x813
+11 1
+.names f g x813_1
+11 1
+.names a c x813_0
+11 1
+.names h814_0 h814_1 h814
+11 1
+.names f g h814_1
+00 1
+.names c d h814_0
+10 1
+.names j_0 j_1 j_5
+01 1
+10 1
+11 1
+.names b814 c814 j_1
+01 1
+10 1
+11 1
+.names c814_0 c814_1 c814
+11 1
+.names d f c814_1
+00 1
+.names c a c814_0
+10 1
+.names b814_0 b814_1 b814
+11 1
+.names c f b814_1
+00 1
+.names d g b814_0
+11 1
+.names z813 a814 j_0
+01 1
+10 1
+11 1
+.names a814_0 a814_1 a814
+11 1
+.names c d a814_1
+00 1
+.names f a a814_0
+10 1
+.names z813_0 z813_1 z813
+11 1
+.names c f z813_1
+00 1
+.names a d z813_0
+11 1
+.names j_2 j_3 j_6
+01 1
+10 1
+11 1
+.names f814 g814 j_3
+01 1
+10 1
+11 1
+.names g814_0 g814_1 g814
+11 1
+.names d g g814_1
+00 1
+.names f c g814_0
+10 1
+.names f814_0 f814_1 f814
+11 1
+.names f g f814_1
+00 1
+.names c a f814_0
+10 1
+.names d814 e814 j_2
+01 1
+10 1
+11 1
+.names e814_0 e814_1 e814
+11 1
+.names c f e814_1
+00 1
+.names a g e814_0
+11 1
+.names d814_0 d814_1 d814
+11 1
+.names c g d814_1
+00 1
+.names f a d814_0
+10 1
+.names i_6 i_7 i
+01 1
+10 1
+11 1
+.names y812 g813 i_7
+01 1
+10 1
+11 1
+.names g813_3 g813_2 g813_1 g813
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names e813 f813 g813_1
+01 1
+10 1
+11 1
+.names f813_1 f813_2 f813
+11 1
+.names c g b f813_2
+111 1
+.names d e f813_1
+11 1
+.names e813_1 e813_2 e813
+11 1
+.names b f a e813_2
+111 1
+.names d e e813_1
+11 1
+.names z812 b813 g813_2
+01 1
+10 1
+11 1
+.names b813_1 b813_2 b813
+11 1
+.names a e b b813_2
+001 1
+.names f d b813_1
+00 1
+.names z812_1 z812_2 z812
+11 1
+.names b f e z812_2
+001 1
+.names d a z812_1
+00 1
+.names c813 d813 a813 g813_3
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names a813_1 a813_2 a813
+11 1
+.names g b a a813_2
+111 1
+.names c e a813_1
+11 1
+.names d813_1 d813_2 d813
+11 1
+.names b d f d813_2
+011 1
+.names a e d813_1
+10 1
+.names c813_1 c813_2 c813
+11 1
+.names a d b c813_2
+001 1
+.names e c c813_1
+00 1
+.names y812_3 y812_2 y812_1 y812
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names s812 u812 y812_1
+01 1
+10 1
+11 1
+.names u812_1 u812_2 u812
+11 1
+.names c g e u812_2
+001 1
+.names d b u812_1
+00 1
+.names s812_1 s812_2 s812
+11 1
+.names d f e s812_2
+001 1
+.names g b s812_1
+00 1
+.names v812 w812 y812_2
+01 1
+10 1
+11 1
+.names w812_1 w812_2 w812
+11 1
+.names a e b w812_2
+001 1
+.names g c w812_1
+00 1
+.names v812_1 v812_2 v812
+11 1
+.names c e b v812_2
+001 1
+.names g d v812_1
+00 1
+.names x812 q812 p812 y812_3
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names p812_1 p812_2 p812
+11 1
+.names b f e p812_2
+001 1
+.names g a p812_1
+00 1
+.names q812_1 q812_2 q812
+11 1
+.names a f b q812_2
+001 1
+.names g e q812_1
+00 1
+.names x812_1 x812_2 x812
+11 1
+.names d f b x812_2
+001 1
+.names g e x812_1
+00 1
+.names o813 i_5 i_6
+01 1
+10 1
+11 1
+.names i_3 i_2 i_1 i_5
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names p813 q813 i_1
+01 1
+10 1
+11 1
+.names q813_1 q813_2 q813
+11 1
+.names g b d q813_2
+111 1
+.names e f q813_1
+11 1
+.names p813_1 p813_2 p813
+11 1
+.names b g f p813_2
+011 1
+.names a e p813_1
+10 1
+.names r813 s813 i_2
+01 1
+10 1
+11 1
+.names s813_1 s813_2 s813
+11 1
+.names d b g s813_2
+101 1
+.names c e s813_1
+10 1
+.names r813_1 r813_2 r813
+11 1
+.names b g f r813_2
+011 1
+.names d e r813_1
+10 1
+.names l812 t813 k812 i_3
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names k812_1 k812_2 k812
+11 1
+.names c b g k812_2
+101 1
+.names a e k812_1
+10 1
+.names t813_1 t813_2 t813
+11 1
+.names b g e t813_2
+001 1
+.names c a t813_1
+00 1
+.names l812_1 l812_2 l812
+11 1
+.names g b a l812_2
+111 1
+.names e f l812_1
+11 1
+.names o813_3 o813_2 o813_1 o813
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names j813 l813 o813_1
+01 1
+10 1
+11 1
+.names l813_0 l813_1 l813
+11 1
+.names c f l813_1
+00 1
+.names e b l813_0
+10 1
+.names j813_1 j813_2 j813
+11 1
+.names e b a j813_2
+111 1
+.names c d j813_1
+11 1
+.names m813 n813 o813_2
+01 1
+10 1
+11 1
+.names n813_1 n813_2 n813
+11 1
+.names b c d n813_2
+011 1
+.names a e n813_1
+10 1
+.names m813_0 m813_1 m813
+11 1
+.names b e m813_1
+00 1
+.names c f m813_0
+11 1
+.names i813 h813 k813 o813_3
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names k813_0 k813_1 k813
+11 1
+.names e f k813_1
+11 1
+.names b c k813_0
+11 1
+.names h813_0 h813_1 h813
+11 1
+.names e f h813_1
+00 1
+.names b c h813_0
+10 1
+.names i813_1 i813_2 i813
+11 1
+.names b d e i813_2
+001 1
+.names c a i813_1
+00 1
+.names a812_5 h_4 a812_6 h
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names a812_3 a812_4 a812_6
+01 1
+10 1
+11 1
+.names z811 a812_0 a812_4
+01 1
+10 1
+11 1
+.names r811 s811_1 s811_0 a812_0
+011 1
+100 1
+101 1
+110 1
+111 1
+.names d e s811_0
+11 1
+.names f g s811_1
+11 1
+.names e b r811
+11 1
+.names z811_0 z811_1 z811
+11 1
+.names g c z811_1
+11 1
+.names a b z811_0
+11 1
+.names x811 y811 a812_3
+01 1
+10 1
+11 1
+.names y811_0 y811_1 y811
+11 1
+.names d g y811_1
+11 1
+.names b c y811_0
+11 1
+.names x811_0 x811_1 x811
+11 1
+.names e g x811_1
+11 1
+.names a c x811_0
+11 1
+.names h_2 h_3 h_4
+01 1
+10 1
+11 1
+.names e812 h_0 d812 h_3
+001 1
+010 1
+011 1
+100 1
+101 1
+110 1
+111 1
+.names d812_0 d812_1 d812
+11 1
+.names e f d812_1
+11 1
+.names d a d812_0
+11 1
+.names b812 c812 h_0
+01 1
+10 1
+11 1
+.names b f c c812
+111 1
+.names f e c b812
+111 1
+.names e812_0 e812_1 e812
+11 1
+.names d f e812_1
+11 1
+.names a b e812_0
+11 1
+.names f812 g812 h_2
+01 1
+10 1
+11 1
+.names g812_0 g812_1 g812
+11 1
+.names d c g812_1
+11 1
+.names a b g812_0
+11 1
+.names f812_0 f812_1 f812
+11 1
+.names d e f812_1
+11 1
+.names a c f812_0
+11 1
+.names a812_1 a812_2 a812_5
+01 1
+10 1
+11 1
+.names v811 w811 a812_2
+01 1
+10 1
+11 1
+.names w811_0 w811_1 w811
+11 1
+.names e g w811_1
+11 1
+.names d c w811_0
+11 1
+.names v811_0 v811_1 v811
+11 1
+.names f g v811_1
+11 1
+.names a b v811_0
+11 1
+.names t811 u811 a812_1
+01 1
+10 1
+11 1
+.names u811_0 u811_1 u811
+11 1
+.names f g u811_1
+11 1
+.names d b u811_0
+11 1
+.names t811_0 t811_1 t811
+11 1
+.names f g t811_1
+11 1
+.names e a t811_0
+11 1
+.end

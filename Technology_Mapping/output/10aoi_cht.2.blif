@@ -1,0 +1,850 @@
+.model cht
+.inputs a b c d e f g h i j k l m n o p q r s t u v w x y z a0 b0 c0 d0 e0 f0 g0 h0 i0 j0 k0 l0 m0 n0 o0 p0 q0 r0 s0 t0 u0
+.outputs v0 w0 x0 y0 z0 a1 b1 c1 d1 e1 f1 g1 h1 i1 j1 k1 l1 m1 n1 o1 p1 q1 r1 s1 t1 u1 v1 w1 x1 y1 z1 a2 b2 c2 d2 e2
+.names e2_0 e2_1 e2
+01 1
+10 1
+11 1
+.names r875 t875 e2_1
+01 1
+10 1
+11 1
+.names r869 t875_0 t875
+11 1
+.names u0 j t875_0
+10 1
+.names k r869
+0 1
+.names r875_0 r875_1 r875
+11 1
+.names k o r875_1
+00 1
+.names a j r875_0
+11 1
+.names s875 u875 e2_0
+01 1
+10 1
+11 1
+.names r869 u875_0 u875
+11 1
+.names u0 a u875_0
+11 1
+.names r869 s875_0 s875
+11 1
+.names u0 o s875_0
+11 1
+.names d2_0 d2_1 d2
+01 1
+10 1
+11 1
+.names m875 p875 d2_1
+01 1
+10 1
+11 1
+.names r869 p875_0 p875
+11 1
+.names t0 j p875_0
+10 1
+.names m875_0 m875_1 m875
+11 1
+.names k o m875_1
+00 1
+.names j u0 m875_0
+11 1
+.names n875 o875 d2_0
+01 1
+10 1
+11 1
+.names r869 o875_0 o875
+11 1
+.names t0 o o875_0
+11 1
+.names r869 n875_0 n875
+11 1
+.names u0 t0 n875_0
+11 1
+.names c2_0 c2_1 c2
+01 1
+10 1
+11 1
+.names h875 k875 c2_1
+01 1
+10 1
+11 1
+.names r869 k875_0 k875
+11 1
+.names s0 j k875_0
+10 1
+.names h875_0 h875_1 h875
+11 1
+.names k o h875_1
+00 1
+.names j t0 h875_0
+11 1
+.names i875 j875 c2_0
+01 1
+10 1
+11 1
+.names r869 j875_0 j875
+11 1
+.names s0 o j875_0
+11 1
+.names r869 i875_0 i875
+11 1
+.names t0 s0 i875_0
+11 1
+.names b2_0 b2_1 b2
+01 1
+10 1
+11 1
+.names c875 f875 b2_1
+01 1
+10 1
+11 1
+.names r869 f875_0 f875
+11 1
+.names r0 j f875_0
+10 1
+.names c875_0 c875_1 c875
+11 1
+.names k o c875_1
+00 1
+.names j s0 c875_0
+11 1
+.names d875 e875 b2_0
+01 1
+10 1
+11 1
+.names r869 e875_0 e875
+11 1
+.names r0 o e875_0
+11 1
+.names r869 d875_0 d875
+11 1
+.names s0 r0 d875_0
+11 1
+.names a2_0 a2_1 a2
+01 1
+10 1
+11 1
+.names x874 a875 a2_1
+01 1
+10 1
+11 1
+.names r869 a875_0 a875
+11 1
+.names q0 j a875_0
+10 1
+.names x874_0 x874_1 x874
+11 1
+.names k o x874_1
+00 1
+.names j r0 x874_0
+11 1
+.names y874 z874 a2_0
+01 1
+10 1
+11 1
+.names r869 z874_0 z874
+11 1
+.names q0 o z874_0
+11 1
+.names r869 y874_0 y874
+11 1
+.names r0 q0 y874_0
+11 1
+.names z1_0 z1_1 z1
+01 1
+10 1
+11 1
+.names s874 v874 z1_1
+01 1
+10 1
+11 1
+.names r869 v874_0 v874
+11 1
+.names p0 j v874_0
+10 1
+.names s874_0 s874_1 s874
+11 1
+.names k o s874_1
+00 1
+.names j q0 s874_0
+11 1
+.names t874 u874 z1_0
+01 1
+10 1
+11 1
+.names r869 u874_0 u874
+11 1
+.names p0 o u874_0
+11 1
+.names r869 t874_0 t874
+11 1
+.names q0 p0 t874_0
+11 1
+.names y1_0 y1_1 y1
+01 1
+10 1
+11 1
+.names n874 q874 y1_1
+01 1
+10 1
+11 1
+.names r869 q874_0 q874
+11 1
+.names o0 j q874_0
+10 1
+.names n874_0 n874_1 n874
+11 1
+.names k o n874_1
+00 1
+.names j p0 n874_0
+11 1
+.names o874 p874 y1_0
+01 1
+10 1
+11 1
+.names r869 p874_0 p874
+11 1
+.names o0 o p874_0
+11 1
+.names r869 o874_0 o874
+11 1
+.names p0 o0 o874_0
+11 1
+.names x1_0 x1_1 x1
+01 1
+10 1
+11 1
+.names i874 l874 x1_1
+01 1
+10 1
+11 1
+.names r869 l874_0 l874
+11 1
+.names n0 j l874_0
+10 1
+.names i874_0 i874_1 i874
+11 1
+.names k o i874_1
+00 1
+.names j o0 i874_0
+11 1
+.names j874 k874 x1_0
+01 1
+10 1
+11 1
+.names r869 k874_0 k874
+11 1
+.names n0 o k874_0
+11 1
+.names r869 j874_0 j874
+11 1
+.names o0 n0 j874_0
+11 1
+.names w1_3 w1_4 w1
+01 1
+10 1
+11 1
+.names w1_1 w1_2 w1_4
+01 1
+10 1
+11 1
+.names e874 f874 w1_2
+01 1
+10 1
+11 1
+.names f874_0 f874_1 f874
+11 1
+.names o k f874_1
+10 1
+.names a j f874_0
+11 1
+.names e874_0 e874_1 e874
+11 1
+.names m0 k e874_1
+10 1
+.names a o e874_0
+11 1
+.names c874 d874 w1_1
+01 1
+10 1
+11 1
+.names r869 d874_0 d874
+11 1
+.names m0 j d874_0
+10 1
+.names c874_0 c874_1 c874
+11 1
+.names k o c874_1
+00 1
+.names j n0 c874_0
+11 1
+.names g874 w1_0 w1_3
+01 1
+10 1
+11 1
+.names z873 a874 w1_0
+01 1
+10 1
+11 1
+.names a874_0 a874_1 a874
+11 1
+.names n0 k a874_1
+10 1
+.names a m0 a874_0
+11 1
+.names z873_0 z873_1 z873
+11 1
+.names n0 k z873_1
+10 1
+.names a j z873_0
+11 1
+.names g874_0 g874_1 g874
+11 1
+.names k o g874_1
+00 1
+.names m0 n0 g874_0
+11 1
+.names v873 v1_0 v1
+01 1
+10 1
+11 1
+.names w873 x873 v1_0
+01 1
+10 1
+11 1
+.names r869 x873_0 x873
+11 1
+.names m0 l0 x873_0
+11 1
+.names r869 w873_0 w873
+11 1
+.names m0 j w873_0
+11 1
+.names r869 v873_0 v873
+11 1
+.names l0 j v873_0
+10 1
+.names r873 u1_0 u1
+01 1
+10 1
+11 1
+.names s873 t873 u1_0
+01 1
+10 1
+11 1
+.names r869 t873_0 t873
+11 1
+.names l0 k0 t873_0
+11 1
+.names r869 s873_0 s873
+11 1
+.names l0 j s873_0
+11 1
+.names r869 r873_0 r873
+11 1
+.names k0 j r873_0
+10 1
+.names n873 t1_0 t1
+01 1
+10 1
+11 1
+.names o873 p873 t1_0
+01 1
+10 1
+11 1
+.names r869 p873_0 p873
+11 1
+.names k0 j0 p873_0
+11 1
+.names r869 o873_0 o873
+11 1
+.names k0 j o873_0
+11 1
+.names r869 n873_0 n873
+11 1
+.names j0 j n873_0
+10 1
+.names j873 s1_0 s1
+01 1
+10 1
+11 1
+.names k873 l873 s1_0
+01 1
+10 1
+11 1
+.names r869 l873_0 l873
+11 1
+.names j0 i0 l873_0
+11 1
+.names r869 k873_0 k873
+11 1
+.names j0 j k873_0
+11 1
+.names r869 j873_0 j873
+11 1
+.names i0 j j873_0
+10 1
+.names f873 r1_0 r1
+01 1
+10 1
+11 1
+.names g873 h873 r1_0
+01 1
+10 1
+11 1
+.names r869 h873_0 h873
+11 1
+.names i0 h0 h873_0
+11 1
+.names r869 g873_0 g873
+11 1
+.names i0 j g873_0
+11 1
+.names r869 f873_0 f873
+11 1
+.names h0 j f873_0
+10 1
+.names b873 q1_0 q1
+01 1
+10 1
+11 1
+.names c873 d873 q1_0
+01 1
+10 1
+11 1
+.names r869 d873_0 d873
+11 1
+.names h0 g0 d873_0
+11 1
+.names r869 c873_0 c873
+11 1
+.names h0 j c873_0
+11 1
+.names r869 b873_0 b873
+11 1
+.names g0 j b873_0
+10 1
+.names x872 p1_0 p1
+01 1
+10 1
+11 1
+.names y872 z872 p1_0
+01 1
+10 1
+11 1
+.names r869 z872_0 z872
+11 1
+.names g0 f0 z872_0
+11 1
+.names r869 y872_0 y872
+11 1
+.names g0 j y872_0
+11 1
+.names r869 x872_0 x872
+11 1
+.names f0 j x872_0
+10 1
+.names t872 o1_0 o1
+01 1
+10 1
+11 1
+.names s872 u872 o1_0
+01 1
+10 1
+11 1
+.names r869 u872_0 u872
+11 1
+.names e0 a u872_0
+11 1
+.names r869 s872_0 s872
+11 1
+.names i a s872_0
+11 1
+.names r869 t872_0 t872
+11 1
+.names e0 i t872_0
+10 1
+.names o872 n1_0 n1
+01 1
+10 1
+11 1
+.names p872 q872 n1_0
+01 1
+10 1
+11 1
+.names r869 q872_0 q872
+11 1
+.names e0 d0 q872_0
+11 1
+.names r869 p872_0 p872
+11 1
+.names e0 i p872_0
+11 1
+.names r869 o872_0 o872
+11 1
+.names d0 i o872_0
+10 1
+.names k872 m1_0 m1
+01 1
+10 1
+11 1
+.names l872 m872 m1_0
+01 1
+10 1
+11 1
+.names r869 m872_0 m872
+11 1
+.names d0 c0 m872_0
+11 1
+.names r869 l872_0 l872
+11 1
+.names d0 i l872_0
+11 1
+.names r869 k872_0 k872
+11 1
+.names c0 i k872_0
+10 1
+.names g872 l1_0 l1
+01 1
+10 1
+11 1
+.names h872 i872 l1_0
+01 1
+10 1
+11 1
+.names r869 i872_0 i872
+11 1
+.names c0 b0 i872_0
+11 1
+.names r869 h872_0 h872
+11 1
+.names c0 i h872_0
+11 1
+.names r869 g872_0 g872
+11 1
+.names b0 i g872_0
+10 1
+.names c872 k1_0 k1
+01 1
+10 1
+11 1
+.names d872 e872 k1_0
+01 1
+10 1
+11 1
+.names r869 e872_0 e872
+11 1
+.names b0 a0 e872_0
+11 1
+.names r869 d872_0 d872
+11 1
+.names b0 i d872_0
+11 1
+.names r869 c872_0 c872
+11 1
+.names a0 i c872_0
+10 1
+.names y871 j1_0 j1
+01 1
+10 1
+11 1
+.names z871 a872 j1_0
+01 1
+10 1
+11 1
+.names r869 a872_0 a872
+11 1
+.names a0 z a872_0
+11 1
+.names r869 z871_0 z871
+11 1
+.names a0 i z871_0
+11 1
+.names r869 y871_0 y871
+11 1
+.names z i y871_0
+10 1
+.names u871 i1_0 i1
+01 1
+10 1
+11 1
+.names v871 w871 i1_0
+01 1
+10 1
+11 1
+.names r869 w871_0 w871
+11 1
+.names z y w871_0
+11 1
+.names r869 v871_0 v871
+11 1
+.names z i v871_0
+11 1
+.names r869 u871_0 u871
+11 1
+.names y i u871_0
+10 1
+.names q871 h1_0 h1
+01 1
+10 1
+11 1
+.names r871 s871 h1_0
+01 1
+10 1
+11 1
+.names r869 s871_0 s871
+11 1
+.names y x s871_0
+11 1
+.names r869 r871_0 r871
+11 1
+.names y i r871_0
+11 1
+.names r869 q871_0 q871
+11 1
+.names x i q871_0
+10 1
+.names m871 g1_0 g1
+01 1
+10 1
+11 1
+.names n871 o871 g1_0
+01 1
+10 1
+11 1
+.names r869 o871_0 o871
+11 1
+.names x w o871_0
+11 1
+.names r869 n871_0 n871
+11 1
+.names x i n871_0
+11 1
+.names r869 m871_0 m871
+11 1
+.names w i m871_0
+10 1
+.names i871 f1_0 f1
+01 1
+10 1
+11 1
+.names j871 k871 f1_0
+01 1
+10 1
+11 1
+.names r869 k871_0 k871
+11 1
+.names w v k871_0
+11 1
+.names r869 j871_0 j871
+11 1
+.names w i j871_0
+11 1
+.names r869 i871_0 i871
+11 1
+.names v i i871_0
+10 1
+.names e871 e1_0 e1
+01 1
+10 1
+11 1
+.names f871 g871 e1_0
+01 1
+10 1
+11 1
+.names r869 g871_0 g871
+11 1
+.names v u g871_0
+11 1
+.names r869 f871_0 f871
+11 1
+.names v i f871_0
+11 1
+.names r869 e871_0 e871
+11 1
+.names u i e871_0
+10 1
+.names a871 d1_0 d1
+01 1
+10 1
+11 1
+.names b871 c871 d1_0
+01 1
+10 1
+11 1
+.names r869 c871_0 c871
+11 1
+.names u t c871_0
+11 1
+.names r869 b871_0 b871
+11 1
+.names u i b871_0
+11 1
+.names r869 a871_0 a871
+11 1
+.names t i a871_0
+10 1
+.names w870 c1_0 c1
+01 1
+10 1
+11 1
+.names x870 y870 c1_0
+01 1
+10 1
+11 1
+.names r869 y870_0 y870
+11 1
+.names t s y870_0
+11 1
+.names r869 x870_0 x870
+11 1
+.names t i x870_0
+11 1
+.names r869 w870_0 w870
+11 1
+.names s i w870_0
+10 1
+.names s870 b1_0 b1
+01 1
+10 1
+11 1
+.names t870 u870 b1_0
+01 1
+10 1
+11 1
+.names r869 u870_0 u870
+11 1
+.names s r u870_0
+11 1
+.names r869 t870_0 t870
+11 1
+.names s i t870_0
+11 1
+.names r869 s870_0 s870
+11 1
+.names r i s870_0
+10 1
+.names o870 a1_0 a1
+01 1
+10 1
+11 1
+.names n870 p870 a1_0
+01 1
+10 1
+11 1
+.names r869 p870_0 p870
+11 1
+.names q d p870_0
+11 1
+.names r869 n870_0 n870
+11 1
+.names h d n870_0
+11 1
+.names r869 o870_0 o870
+11 1
+.names q h o870_0
+10 1
+.names k870 z0_0 z0
+01 1
+10 1
+11 1
+.names j870 l870 z0_0
+01 1
+10 1
+11 1
+.names r869 l870_0 l870
+11 1
+.names p c l870_0
+11 1
+.names r869 j870_0 j870
+11 1
+.names h c j870_0
+11 1
+.names r869 k870_0 k870
+11 1
+.names p h k870_0
+10 1
+.names g870 y0_0 y0
+01 1
+10 1
+11 1
+.names f870 h870 y0_0
+01 1
+10 1
+11 1
+.names r869 h870_0 h870
+11 1
+.names o b h870_0
+11 1
+.names r869 f870_0 f870
+11 1
+.names h b f870_0
+11 1
+.names r869 g870_0 g870
+11 1
+.names o h g870_0
+10 1
+.names c870 x0_0 x0
+01 1
+10 1
+11 1
+.names b870 d870 x0_0
+01 1
+10 1
+11 1
+.names r869 d870_0 d870
+11 1
+.names n g d870_0
+11 1
+.names r869 b870_0 b870
+11 1
+.names h g b870_0
+11 1
+.names r869 c870_0 c870
+11 1
+.names n h c870_0
+10 1
+.names y869 w0_0 w0
+01 1
+10 1
+11 1
+.names x869 z869 w0_0
+01 1
+10 1
+11 1
+.names r869 z869_0 z869
+11 1
+.names m f z869_0
+11 1
+.names r869 x869_0 x869
+11 1
+.names h f x869_0
+11 1
+.names r869 y869_0 y869
+11 1
+.names m h y869_0
+10 1
+.names u869 v0_0 v0
+01 1
+10 1
+11 1
+.names s869 v869 v0_0
+01 1
+10 1
+11 1
+.names r869 v869_0 v869
+11 1
+.names l e v869_0
+11 1
+.names r869 s869_0 s869
+11 1
+.names e h s869_0
+11 1
+.names r869 u869_0 u869
+11 1
+.names l h u869_0
+10 1
+.end
