@@ -1,29 +1,21 @@
 #include "Decomposer/Decomposer.hpp"
 #include "FlowMap/FlowMap.hpp"
 #include "GlobalTimer/GlobalTimer.hpp"
+#include "Parser/ArgumentParser.hpp"
 #include "Parser/Parser.hpp"
-#include <iostream>
-#include <string>
 
 int main(int argc, char *argv[])
 {
-    if (argc < 5)
-    {
-        std::cerr << "Usage: " << argv[0] << " -k <k-LUT> <input file> <output file>\n";
-        return 0;
-    }
-    else if (std::stoi(argv[2]) < 2)
-    {
-        std::cerr << "[Error] k must be grater than 1!\n";
-        return 0;
-    }
+    ArgumentParser argParser;
+    if (!argParser.parse(argc, argv))
+        return 1;
 
     GlobalTimer globalTimer(10 * 60 - 5);
     globalTimer.startTimer("runtime");
     globalTimer.startTimer("parse input");
 
     Parser parser;
-    parser.readBlif(argv[3]);
+    parser.readBlif(argParser.inputFile);
     auto graph = parser.getGraph();
 
     globalTimer.stopTimer("parse input");
@@ -34,13 +26,13 @@ int main(int argc, char *argv[])
     globalTimer.stopTimer("decompose");
     globalTimer.startTimer("flow map");
 
-    FlowMap flowMap(graph.get(), std::stoi(argv[2]));
+    FlowMap flowMap(graph.get(), argParser.maxLutInputSize);
     auto result = flowMap.solve();
 
     globalTimer.stopTimer("flow map");
     globalTimer.startTimer("write output");
 
-    result->write(argv[4]);
+    result->write(argParser.outputFile);
 
     globalTimer.stopTimer("write output");
     globalTimer.stopTimer("runtime");

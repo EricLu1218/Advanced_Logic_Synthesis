@@ -17,7 +17,7 @@ class FlowMap
     void clearSubGraph();
     bool createSubGraph(const leda::node &target);
     int getMaxFanInLabel(const leda::node &target) const;
-    void collapse(const int &maxFanInLabel);
+    void collapse(int maxFanInLabel);
     void splitNodes();
     std::unordered_set<leda::node> getXBar(leda::edge_array<int> flow) const;
     void labelingPhase();
@@ -28,6 +28,6 @@ class FlowMap
     int calCircuitLevel(std::vector<process::Lut::ptr> &luts) const;
 
 public:
-    FlowMap(process::Graph *graph, const int &maxLutInputSize);
+    FlowMap(process::Graph *graph, int maxLutInputSize);
     ResultWriter::ptr solve();
 };

@@ -95,7 +95,7 @@ int FlowMap::getMaxFanInLabel(const leda::node &target) const
     return maxFanInLabel;
 }
 
-void FlowMap::collapse(const int &maxFanInLabel)
+void FlowMap::collapse(int maxFanInLabel)
 {
     std::unordered_set<leda::node> fanInNodes;
     auto nodeList = this->subGraph.ledaGraph.all_nodes();
@@ -399,7 +399,7 @@ int FlowMap::calCircuitLevel(std::vector<process::Lut::ptr> &luts) const
     return circuitLevel;
 }
 
-FlowMap::FlowMap(process::Graph *graph, const int &maxLutInputSize) : graph(*graph), maxLutInputSize(maxLutInputSize)
+FlowMap::FlowMap(process::Graph *graph, int maxLutInputSize) : graph(*graph), maxLutInputSize(maxLutInputSize)
 {
     auto nodeInfo = new process::NodeInfo("source", process::NodeInfo::Type::NONE);
     this->graph.source = this->graph.ledaGraph.new_node(nodeInfo);
@@ -414,8 +414,8 @@ ResultWriter::ptr FlowMap::solve()
     this->labelingPhase();
     auto luts = this->mappingPhase();
     auto circuitLevel = this->calCircuitLevel(luts);
-    std::cout << "The circuit level is " << circuitLevel << ".\n";
-    std::cout << "The number of LUTs is " << luts.size() << ".\n";
+    std::cout << "The circuit level is " << circuitLevel << "." << std::endl;
+    std::cout << "The number of LUTs is " << luts.size() << "." << std::endl;
 
     std::vector<std::string> primaryInputNames;
     for (const auto &node : this->graph.primaryInputNodes)

@@ -19,14 +19,14 @@ class GlobalTimer
     std::chrono::seconds timeLimit;
 
     template <class ToDuration = std::chrono::milliseconds>
-    ToDuration getDuration(std::string const &tag)
+    ToDuration getDuration(const std::string &tag)
     {
         auto timeInfo = timeInfos.at(tag);
         return std::chrono::duration_cast<ToDuration>(timeInfo->endTime - timeInfo->startTime);
     }
 
 public:
-    GlobalTimer(int const &timeLimitInSecond)
+    GlobalTimer(int timeLimitInSecond)
         : timeLimit(std::chrono::seconds(timeLimitInSecond))
     {
         timeInfos.emplace("_timeLimit", new TimeInfo());
@@ -39,7 +39,7 @@ public:
         return getDuration<>(tag) >= timeLimit;
     }
 
-    void startTimer(std::string const &tag)
+    void startTimer(const std::string &tag)
     {
         if (timeInfos.find(tag) == timeInfos.end())
             timeInfos.emplace(tag, new TimeInfo());
@@ -47,16 +47,16 @@ public:
             timeInfos.at(tag)->startTime = std::chrono::high_resolution_clock::now();
     }
 
-    void stopTimer(std::string const &tag)
+    void stopTimer(const std::string &tag)
     {
         timeInfos.at(tag)->endTime = std::chrono::high_resolution_clock::now();
     }
 
-    void printTime(std::string const &tag)
+    void printTime(const std::string &tag)
     {
         auto duration = getDuration<>(tag).count();
         auto minute = duration / 1000 / 60;
         auto second = duration / 1000.0 - minute * 60;
-        std::cout << std::setw(15) << std::left << tag + ":" << minute << " m " << second << " s\n";
+        std::cout << std::setw(15) << std::left << tag + ":" << minute << " m " << second << " s" << std::endl;
     }
 };

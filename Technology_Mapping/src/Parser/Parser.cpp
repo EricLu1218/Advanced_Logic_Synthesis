@@ -8,12 +8,20 @@
 #include <unordered_map>
 #include <vector>
 
+inline std::string strip(std::string input, std::string emptyChars = " \t\r\n")
+{
+    input.erase(0, input.find_first_not_of(emptyChars));
+    input.erase(input.find_last_not_of(emptyChars) + 1);
+    return input;
+}
+
 void Parser::readBlif(const std::string &filename)
 {
     std::vector<std::vector<std::string>> lines;
     std::ifstream fin(filename);
     for (std::string buff; std::getline(fin, buff);)
     {
+        buff = strip(buff);
         if (buff.empty())
             continue;
 
@@ -92,8 +100,8 @@ void Parser::readBlif(const std::string &filename)
                 }
                 else
                 {
-                    std::cerr << "logic error\n";
-                    exit(1);
+                    std::cerr << "logic error" << std::endl;
+                    exit(EXIT_FAILURE);
                 }
             }
             this->gates.emplace_back(new raw::Gate(name, type, std::move(fanInNames)));
@@ -104,8 +112,8 @@ void Parser::readBlif(const std::string &filename)
         }
         else
         {
-            std::cerr << "parse error\n";
-            exit(1);
+            std::cerr << "parse error" << std::endl;
+            exit(EXIT_FAILURE);
         }
     }
 }
