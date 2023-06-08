@@ -8,7 +8,7 @@ public:
     int maxLutInputSize;
     std::string inputFile, outputFile;
 
-    ArgumentParser() : maxLutInputSize(-1) {}
+    ArgumentParser() : maxLutInputSize(2) {}
 
     bool parse(int argc, char *argv[])
     {
@@ -21,21 +21,21 @@ public:
                 maxLutInputSize = std::stoi(optarg);
                 if (maxLutInputSize < 2)
                 {
-                    std::cerr << "[Error] k must be grater than 1!" << std::endl;
+                    std::cerr << "[Error] k-LUT must be grater than 1!\n";
                     return false;
                 }
                 break;
 
             default:
-                std::cerr << "Usage: " << argv[0] << " -k [k-LUT] [input file] [output file]" << std::endl;
+                std::cerr << "Usage: " << argv[0] << " [-k k-LUT] INPUT_FILE OUTPUT_FILE\n";
                 return false;
                 break;
             }
         }
 
-        if (maxLutInputSize == -1 || argc - optind != 2)
+        if (argc - optind != 2)
         {
-            std::cerr << "Usage: " << argv[0] << " -k [k-LUT] [input file] [output file]" << std::endl;
+            std::cerr << "Usage: " << argv[0] << " [-k k-LUT] INPUT_FILE OUTPUT_FILE\n";
             return false;
         }
         inputFile = argv[optind];

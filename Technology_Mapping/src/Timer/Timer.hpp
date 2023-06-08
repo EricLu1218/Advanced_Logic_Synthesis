@@ -61,7 +61,7 @@ public:
     {
         if (tagToTimer.count(tag) == 0)
         {
-            std::cout << "[Error] Cannot stop timer. Timer \"" << tag << "\" never started." << std::endl;
+            std::cerr << "[Error] Cannot stop timer. Timer \"" << tag << "\" never started.\n";
             return;
         }
         tagToTimer[tag].stop();
@@ -72,16 +72,16 @@ public:
 
         if (tagToTimer.count(tag) == 0)
         {
-            std::cout << "[Error] Cannot print time. Timer \"" << tag << "\" never started." << std::endl;
+            std::cerr << "[Error] Cannot print time. Timer \"" << tag << "\" never started.\n";
             return;
         }
         else if (!tagToTimer[tag].isStopped)
         {
-            std::cout << "[Error] Cannot print time. Timer \"" << tag << "\" does not stop after starting." << std::endl;
+            std::cerr << "[Error] Cannot print time. Timer \"" << tag << "\" does not stop after starting.\n";
             return;
         }
 
         std::chrono::duration<double> second = tagToTimer[tag].getDuration();
-        std::cout << std::setw(15) << std::left << tag + ":" << second.count() << " s" << std::endl;
+        std::cout << std::setw(15) << std::left << tag + ":" << second.count() << " s\n";
     }
 };

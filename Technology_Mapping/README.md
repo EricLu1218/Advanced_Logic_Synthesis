@@ -18,7 +18,7 @@ $ make clean
 ## How to Run
 Usage:
 ```
-$ ./<exe> -k <k-LUT> <input file> <output file>
+$ ./map [-k k-LUT] INPUT_FILE OUTPUT_FILE
 ```
 
 e.g.

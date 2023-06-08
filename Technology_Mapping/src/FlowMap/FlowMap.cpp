@@ -414,8 +414,8 @@ ResultWriter::ptr FlowMap::solve()
     this->labelingPhase();
     auto luts = this->mappingPhase();
     auto circuitLevel = this->calCircuitLevel(luts);
-    std::cout << "The circuit level is " << circuitLevel << "." << std::endl;
-    std::cout << "The number of LUTs is " << luts.size() << "." << std::endl;
+    std::cout << "The circuit level is " << circuitLevel << ".\n"
+              << "The number of LUTs is " << luts.size() << ".\n";
 
     std::vector<std::string> primaryInputNames;
     for (const auto &node : this->graph.primaryInputNodes)

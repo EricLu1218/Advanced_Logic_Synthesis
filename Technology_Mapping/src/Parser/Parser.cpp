@@ -100,7 +100,7 @@ void Parser::readBlif(const std::string &filename)
                 }
                 else
                 {
-                    std::cerr << "logic error" << std::endl;
+                    std::cerr << "[Error] Logic error.\n";
                     exit(EXIT_FAILURE);
                 }
             }
@@ -112,7 +112,7 @@ void Parser::readBlif(const std::string &filename)
         }
         else
         {
-            std::cerr << "parse error" << std::endl;
+            std::cerr << "[Error] Parse error.\n";
             exit(EXIT_FAILURE);
         }
     }
