@@ -8,17 +8,23 @@
 #include <unordered_map>
 #include <vector>
 
-inline std::string strip(std::string input, std::string emptyChars = " \t\r\n")
+inline std::string strip(std::string input, std::string chars = " \t\r\n")
 {
-    input.erase(0, input.find_first_not_of(emptyChars));
-    input.erase(input.find_last_not_of(emptyChars) + 1);
+    input.erase(0, input.find_first_not_of(chars));
+    input.erase(input.find_last_not_of(chars) + 1);
     return input;
 }
 
 void Parser::readBlif(const std::string &filename)
 {
-    std::vector<std::vector<std::string>> lines;
     std::ifstream fin(filename);
+    if (!fin)
+    {
+        std::cerr << "[Error] Cannot open \"" << filename << "\".\n";
+        exit(EXIT_FAILURE);
+    }
+
+    std::vector<std::vector<std::string>> lines;
     for (std::string buff; std::getline(fin, buff);)
     {
         buff = strip(buff);

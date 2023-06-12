@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <unistd.h>
@@ -21,13 +22,13 @@ public:
                 maxLutInputSize = std::stoi(optarg);
                 if (maxLutInputSize < 2)
                 {
-                    std::cerr << "[Error] k-LUT must be grater than 1!\n";
+                    std::cerr << "[Error] k-LUT must be grater than 1.\n";
                     return false;
                 }
                 break;
 
             default:
-                std::cerr << "Usage: " << argv[0] << " [-k k-LUT] INPUT_FILE OUTPUT_FILE\n";
+                std::cerr << "Usage: " << argv[0] << " [-k k-LUT] <input file> <output file>\n";
                 return false;
                 break;
             }
@@ -35,7 +36,7 @@ public:
 
         if (argc - optind != 2)
         {
-            std::cerr << "Usage: " << argv[0] << " [-k k-LUT] INPUT_FILE OUTPUT_FILE\n";
+            std::cerr << "Usage: " << argv[0] << " [-k k-LUT] <input file> <output file>\n";
             return false;
         }
         inputFile = argv[optind];

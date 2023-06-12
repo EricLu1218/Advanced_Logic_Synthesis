@@ -1,8 +1,8 @@
 #include "Decomposer/Decomposer.hpp"
 #include "FlowMap/FlowMap.hpp"
-#include "Timer/Timer.hpp"
 #include "Parser/ArgumentParser.hpp"
 #include "Parser/Parser.hpp"
+#include "Timer/Timer.hpp"
 
 int main(int argc, char *argv[])
 {

@@ -1,5 +1,5 @@
 CXX       := g++
-CXXFLAGS  := -std=c++11 -O3 -Wall -Wextra -MMD
+CXXFLAGS  := -std=c++17 -O3 -Wall -Wextra -MMD
 LEDA_ROOT := ../include/LEDA
 LIBS      := -L$(LEDA_ROOT) -lG -lL -lm
 INCLUDE   := -isystem $(LEDA_ROOT)/incl
@@ -31,7 +31,7 @@ endif
 
 test: $(EXEC)
 	@echo test on $(TESTCASE_NAME)
-	./$(EXEC) -k 4 ../testcases/$(TESTCASE_NAME).blif ../output/$(TESTCASE_NAME).4.blif
+	./$(EXEC) -k 4 ../testcase/$(TESTCASE_NAME).blif ../output/$(TESTCASE_NAME).4.blif
 
 .PHONY: all clean test
 -include $(DEPS)

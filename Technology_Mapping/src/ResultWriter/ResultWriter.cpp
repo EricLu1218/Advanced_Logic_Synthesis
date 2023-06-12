@@ -22,6 +22,12 @@ void ResultWriter::createTruthTable(int variableNum)
 void ResultWriter::write(const std::string &filename) const
 {
     std::ofstream fout(filename);
+    if (!fout)
+    {
+        std::cerr << "[Error] Cannot open \"" << filename << "\".\n";
+        exit(EXIT_FAILURE);
+    }
+
     fout << ".model " << this->modelName << '\n';
 
     fout << ".inputs";
