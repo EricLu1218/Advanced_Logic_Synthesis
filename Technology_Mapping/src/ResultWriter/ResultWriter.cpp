@@ -7,7 +7,7 @@ void ResultWriter::createTruthTable(int variableNum)
     static std::vector<int> row;
     if (variableNum == 0)
     {
-        this->truthTable.emplace_back(row);
+        truthTable.emplace_back(row);
         return;
     }
 
@@ -28,19 +28,19 @@ void ResultWriter::write(const std::string &filename) const
         exit(EXIT_FAILURE);
     }
 
-    fout << ".model " << this->modelName << '\n';
+    fout << ".model " << modelName << '\n';
 
     fout << ".inputs";
-    for (const auto &name : this->primaryInputNames)
+    for (const auto &name : primaryInputNames)
         fout << ' ' << name;
     fout << '\n';
 
     fout << ".outputs";
-    for (const auto &name : this->primaryOutputNames)
+    for (const auto &name : primaryOutputNames)
         fout << ' ' << name;
     fout << '\n';
 
-    for (const auto &lut : this->luts)
+    for (const auto &lut : luts)
     {
         fout << ".names";
         for (const auto &name : lut->inputNames)
@@ -53,13 +53,13 @@ void ResultWriter::write(const std::string &filename) const
         }
         else
         {
-            size_t idx = this->maxLutInputSize - lut->inputNames.size();
+            size_t idx = maxLutInputSize - lut->inputNames.size();
             for (size_t i = 0; i < lut->outputLogics.size(); ++i)
             {
                 if (lut->outputLogics.at(i) == 0)
                     continue;
 
-                for (size_t j = idx; j < static_cast<size_t>(this->maxLutInputSize); ++j)
+                for (size_t j = idx; j < static_cast<size_t>(maxLutInputSize); ++j)
                     fout << truthTable.at(i).at(j);
                 fout << " 1\n";
             }

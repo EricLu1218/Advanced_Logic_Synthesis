@@ -23,7 +23,7 @@ public:
         : modelName(modelName), primaryInputNames(primaryInputNames),
           primaryOutputNames(primaryOutputNames), luts(std::move(luts)), maxLutInputSize(maxLutInputSize)
     {
-        this->createTruthTable(maxLutInputSize);
+        createTruthTable(maxLutInputSize);
     }
 
     void write(const std::string &filename) const;

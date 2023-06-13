@@ -52,15 +52,15 @@ void Parser::readBlif(const std::string &filename)
         const std::string &identifier = lines.at(i).at(0);
         if (identifier == ".model")
         {
-            this->modelName = lines.at(i).at(1);
+            modelName = lines.at(i).at(1);
         }
         else if (identifier == ".inputs")
         {
-            std::copy(lines.at(i).begin() + 1, lines.at(i).end(), std::back_inserter(this->primaryInputNames));
+            std::copy(lines.at(i).begin() + 1, lines.at(i).end(), std::back_inserter(primaryInputNames));
         }
         else if (identifier == ".outputs")
         {
-            std::copy(lines.at(i).begin() + 1, lines.at(i).end(), std::back_inserter(this->primaryOutputNames));
+            std::copy(lines.at(i).begin() + 1, lines.at(i).end(), std::back_inserter(primaryOutputNames));
         }
         else if (identifier == ".names")
         {
@@ -110,7 +110,7 @@ void Parser::readBlif(const std::string &filename)
                     exit(EXIT_FAILURE);
                 }
             }
-            this->gates.emplace_back(new raw::Gate(name, type, std::move(fanInNames)));
+            gates.emplace_back(new raw::Gate(name, type, std::move(fanInNames)));
         }
         else if (identifier == ".end")
         {
@@ -126,9 +126,9 @@ void Parser::readBlif(const std::string &filename)
 
 process::Graph::ptr Parser::getGraph() const
 {
-    auto graph = new process::Graph(this->modelName);
+    auto graph = new process::Graph(modelName);
 
-    for (const auto &name : this->primaryInputNames)
+    for (const auto &name : primaryInputNames)
     {
         auto nodeInfo = new process::NodeInfo(name, process::NodeInfo::Type::PI);
         auto node = graph->ledaGraph.new_node(nodeInfo);
@@ -137,7 +137,7 @@ process::Graph::ptr Parser::getGraph() const
         graph->nodeInfos.emplace_back(nodeInfo);
     }
 
-    for (const auto &gate : this->gates)
+    for (const auto &gate : gates)
     {
         auto nodeInfo = new process::NodeInfo(gate->name, gate->type);
         auto node = graph->ledaGraph.new_node(nodeInfo);
@@ -145,12 +145,12 @@ process::Graph::ptr Parser::getGraph() const
         graph->nodeInfos.emplace_back(nodeInfo);
     }
 
-    for (const auto &name : this->primaryOutputNames)
+    for (const auto &name : primaryOutputNames)
     {
         graph->primaryOutputNodes.emplace_back(graph->strToNode.at(name));
     }
 
-    for (const auto &gate : this->gates)
+    for (const auto &gate : gates)
     {
         auto node = graph->strToNode.at(gate->name);
         for (const auto &name : gate->fanInNames)

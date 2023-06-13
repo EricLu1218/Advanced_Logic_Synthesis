@@ -38,7 +38,7 @@ namespace process
         NodeInfo(const std::string &name, raw::Gate::Type type, int level = -1)
             : name(name), level(level), label(-1)
         {
-            this->setType(type);
+            setType(type);
         }
 
         void setType(const raw::Gate::Type &gateType)
@@ -46,25 +46,25 @@ namespace process
             switch (gateType)
             {
             case raw::Gate::Type::AND:
-                this->type = process::NodeInfo::Type::AND;
+                type = process::NodeInfo::Type::AND;
                 break;
             case raw::Gate::Type::OR:
-                this->type = process::NodeInfo::Type::OR;
+                type = process::NodeInfo::Type::OR;
                 break;
             case raw::Gate::Type::NOT:
-                this->type = process::NodeInfo::Type::NOT;
+                type = process::NodeInfo::Type::NOT;
                 break;
             case raw::Gate::Type::BUFFER:
-                this->type = process::NodeInfo::Type::BUFFER;
+                type = process::NodeInfo::Type::BUFFER;
                 break;
             case raw::Gate::Type::CONST_0:
-                this->type = process::NodeInfo::Type::CONST_0;
+                type = process::NodeInfo::Type::CONST_0;
                 break;
             case raw::Gate::Type::CONST_1:
-                this->type = process::NodeInfo::Type::CONST_1;
+                type = process::NodeInfo::Type::CONST_1;
                 break;
             default:
-                this->type = process::NodeInfo::Type::NONE;
+                type = process::NodeInfo::Type::NONE;
                 break;
             }
         }
@@ -86,13 +86,13 @@ namespace process
 
         void clear()
         {
-            this->name.clear();
-            this->ledaGraph.clear();
-            this->source = nullptr;
-            this->primaryInputNodes.clear();
-            this->primaryOutputNodes.clear();
-            this->strToNode.clear();
-            this->nodeInfos.clear();
+            name.clear();
+            ledaGraph.clear();
+            source = nullptr;
+            primaryInputNodes.clear();
+            primaryOutputNodes.clear();
+            strToNode.clear();
+            nodeInfos.clear();
         }
     };
 
@@ -108,9 +108,9 @@ namespace process
 
         void clear()
         {
-            this->ledaGraph.clear();
-            this->source = this->target = nullptr;
-            this->predecessors.clear();
+            ledaGraph.clear();
+            source = target = nullptr;
+            predecessors.clear();
         }
     };
 
