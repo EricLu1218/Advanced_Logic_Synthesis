@@ -24,14 +24,16 @@ $(EXEC): $(OBJS)
 clean:
 	rm -rf $(EXEC) $(OBJS) $(DEPS)
 
-ifeq (test,$(firstword $(MAKECMDGOALS)))
-  TESTCASE_NAME := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-  $(eval $(TESTCASE_NAME):;@:)
+ifeq (test, $(firstword $(MAKECMDGOALS)))
+  TESTCASE := $(word 2, $(MAKECMDGOALS))
+  K        := $(word 3, $(MAKECMDGOALS))
+  $(eval $(TESTCASE):;@:)
+  $(eval $(K):;@:)
 endif
 
 test: $(EXEC)
-	@echo test on $(TESTCASE_NAME)
-	./$(EXEC) -k 4 ../testcase/$(TESTCASE_NAME).blif ../output/$(TESTCASE_NAME).4.blif
+	@echo test on $(TESTCASE) with k=$(K)
+	./$(EXEC) -k $(K) ../testcase/$(TESTCASE).blif ../output/$(TESTCASE).$(K).blif
 
 .PHONY: all clean test
 -include $(DEPS)

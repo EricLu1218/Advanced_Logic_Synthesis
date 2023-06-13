@@ -29,11 +29,11 @@ $ ./map -k 4 ../testcase/10aoi_sample01.blif ../output/10aoi_sample01.4.blif
 ## How to Test
 In `Technology_Mapping/src/`, enter the following command:
 ```
-$ make test ${name}
+$ make test $name $k
 ```
-It will build an executable file and test on testcase ${name} with k=4.
+It will build an executable file and test on testcase `$name` with k=`$k`.
 
-E.g., test on 10aoi_sample01 with k=4
+E.g., test on 10aoi_sample01 with k=4.
 ```
-$ make test 10aoi_sample01
+$ make test 10aoi_sample01 4
 ```

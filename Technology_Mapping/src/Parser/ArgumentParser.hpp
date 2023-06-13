@@ -41,7 +41,6 @@ public:
         }
         inputFile = argv[optind];
         outputFile = argv[optind + 1];
-
         return true;
     }
 };
