@@ -15,10 +15,12 @@ inline std::string strip(std::string input, std::string chars = " \t\r\n")
     return input;
 }
 
+Parser::Parser() {}
+
 void Parser::readBlif(const std::string &filename)
 {
     std::ifstream fin(filename);
-    if (!fin)
+    if (!fin.is_open())
     {
         std::cerr << "[Error] Cannot open \"" << filename << "\".\n";
         exit(EXIT_FAILURE);

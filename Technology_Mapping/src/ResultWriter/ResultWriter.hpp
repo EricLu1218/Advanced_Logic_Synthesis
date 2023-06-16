@@ -18,13 +18,8 @@ class ResultWriter
 public:
     using ptr = std::unique_ptr<ResultWriter>;
 
+    ResultWriter();
     ResultWriter(const std::string &modelName, std::vector<std::string> &&primaryInputNames,
-                 std::vector<std::string> &&primaryOutputNames, std::vector<process::Lut::ptr> &&luts, const int &maxLutInputSize)
-        : modelName(modelName), primaryInputNames(primaryInputNames),
-          primaryOutputNames(primaryOutputNames), luts(std::move(luts)), maxLutInputSize(maxLutInputSize)
-    {
-        createTruthTable(maxLutInputSize);
-    }
-
+                 std::vector<std::string> &&primaryOutputNames, std::vector<process::Lut::ptr> &&luts, int maxLutInputSize);
     void write(const std::string &filename) const;
 };

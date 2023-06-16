@@ -19,10 +19,20 @@ void ResultWriter::createTruthTable(int variableNum)
     }
 }
 
+ResultWriter::ResultWriter() : maxLutInputSize(0) {}
+
+ResultWriter::ResultWriter(const std::string &modelName, std::vector<std::string> &&primaryInputNames,
+                           std::vector<std::string> &&primaryOutputNames, std::vector<process::Lut::ptr> &&luts, int maxLutInputSize)
+    : modelName(modelName), primaryInputNames(primaryInputNames),
+      primaryOutputNames(primaryOutputNames), luts(std::move(luts)), maxLutInputSize(maxLutInputSize)
+{
+    createTruthTable(maxLutInputSize);
+}
+
 void ResultWriter::write(const std::string &filename) const
 {
     std::ofstream fout(filename);
-    if (!fout)
+    if (!fout.is_open())
     {
         std::cerr << "[Error] Cannot open \"" << filename << "\".\n";
         exit(EXIT_FAILURE);

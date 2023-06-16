@@ -11,7 +11,7 @@ class Parser
     std::vector<raw::Gate::ptr> gates;
 
 public:
-    Parser() {}
+    Parser();
     void readBlif(const std::string &filename);
     process::Graph::ptr getGraph() const;
 };
