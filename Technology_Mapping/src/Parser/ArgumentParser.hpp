@@ -7,7 +7,7 @@ class ArgumentParser
 {
 public:
     int maxLutInputSize;
-    std::string inputFile, outputFile;
+    std::string inputFilepath, outputFilepath;
 
     ArgumentParser() : maxLutInputSize(2) {}
 
@@ -39,8 +39,8 @@ public:
             std::cerr << "Usage: " << argv[0] << " [-k k-LUT] <input file> <output file>\n";
             return false;
         }
-        inputFile = argv[optind];
-        outputFile = argv[optind + 1];
+        inputFilepath = argv[optind];
+        outputFilepath = argv[optind + 1];
         return true;
     }
 };

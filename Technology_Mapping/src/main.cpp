@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     timer.startTimer("parse input");
 
     Parser parser;
-    parser.readBlif(argParser.inputFile);
+    parser.readBlif(argParser.inputFilepath);
     auto graph = parser.getGraph();
 
     timer.stopTimer("parse input");
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     timer.stopTimer("flow map");
     timer.startTimer("write output");
 
-    result->write(argParser.outputFile);
+    result->write(argParser.outputFilepath);
 
     timer.stopTimer("write output");
     timer.stopTimer("runtime");

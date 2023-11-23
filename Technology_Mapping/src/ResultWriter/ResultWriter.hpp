@@ -21,5 +21,5 @@ public:
     ResultWriter();
     ResultWriter(const std::string &modelName, std::vector<std::string> &&primaryInputNames,
                  std::vector<std::string> &&primaryOutputNames, std::vector<process::Lut::ptr> &&luts, int maxLutInputSize);
-    void write(const std::string &filename) const;
+    void write(const std::string &filepath) const;
 };

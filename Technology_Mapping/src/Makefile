@@ -19,7 +19,7 @@ $(EXEC): $(OBJS)
 	$(CXX) -o $@ $^ $(LIBS)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@ $(INCLUDE)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
 	rm -rf $(EXEC) $(OBJS) $(DEPS)

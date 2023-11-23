@@ -17,12 +17,12 @@ inline std::string strip(std::string input, std::string chars = " \t\r\n")
 
 Parser::Parser() {}
 
-void Parser::readBlif(const std::string &filename)
+void Parser::readBlif(const std::string &filepath)
 {
-    std::ifstream fin(filename);
+    std::ifstream fin(filepath);
     if (!fin.is_open())
     {
-        std::cerr << "[Error] Cannot open \"" << filename << "\".\n";
+        std::cerr << "[Error] Cannot open \"" << filepath << "\".\n";
         exit(EXIT_FAILURE);
     }
 

@@ -12,6 +12,6 @@ class Parser
 
 public:
     Parser();
-    void readBlif(const std::string &filename);
+    void readBlif(const std::string &filepath);
     process::Graph::ptr getGraph() const;
 };
