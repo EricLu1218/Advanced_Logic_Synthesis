@@ -41,19 +41,19 @@ void ResultWriter::write(const std::string &filepath) const
     fout << ".model " << modelName << '\n';
 
     fout << ".inputs";
-    for (const auto &name : primaryInputNames)
+    for (const std::string &name : primaryInputNames)
         fout << ' ' << name;
     fout << '\n';
 
     fout << ".outputs";
-    for (const auto &name : primaryOutputNames)
+    for (const std::string &name : primaryOutputNames)
         fout << ' ' << name;
     fout << '\n';
 
-    for (const auto &lut : luts)
+    for (const process::Lut::ptr &lut : luts)
     {
         fout << ".names";
-        for (const auto &name : lut->inputNames)
+        for (const std::string &name : lut->inputNames)
             fout << ' ' << name;
         fout << ' ' << lut->name << '\n';
 

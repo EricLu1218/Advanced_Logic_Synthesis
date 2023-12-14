@@ -92,7 +92,7 @@ void Parser::readBlif(const std::string &filepath)
             else
             {
                 size_t cnt = 0;
-                for (const auto &c : lines.at(i + 1).at(0))
+                for (char c : lines.at(i + 1).at(0))
                     if (c == '1')
                         ++cnt;
 
@@ -128,34 +128,34 @@ void Parser::readBlif(const std::string &filepath)
 
 process::Graph::ptr Parser::getGraph() const
 {
-    auto graph = new process::Graph(modelName);
+    process::Graph *graph = new process::Graph(modelName);
 
-    for (const auto &name : primaryInputNames)
+    for (const std::string &name : primaryInputNames)
     {
-        auto nodeInfo = new process::NodeInfo(name, process::NodeInfo::Type::PI);
-        auto node = graph->ledaGraph.new_node(nodeInfo);
+        process::NodeInfo *nodeInfo = new process::NodeInfo(name, process::NodeInfo::Type::PI);
+        leda::graph::node node = graph->ledaGraph.new_node(nodeInfo);
         graph->primaryInputNodes.emplace_back(node);
         graph->strToNode.emplace(name, node);
         graph->nodeInfos.emplace_back(nodeInfo);
     }
 
-    for (const auto &gate : gates)
+    for (const raw::Gate::ptr &gate : gates)
     {
-        auto nodeInfo = new process::NodeInfo(gate->name, gate->type);
-        auto node = graph->ledaGraph.new_node(nodeInfo);
+        process::NodeInfo *nodeInfo = new process::NodeInfo(gate->name, gate->type);
+        leda::graph::node node = graph->ledaGraph.new_node(nodeInfo);
         graph->strToNode.emplace(gate->name, node);
         graph->nodeInfos.emplace_back(nodeInfo);
     }
 
-    for (const auto &name : primaryOutputNames)
+    for (const std::string &name : primaryOutputNames)
     {
         graph->primaryOutputNodes.emplace_back(graph->strToNode.at(name));
     }
 
-    for (const auto &gate : gates)
+    for (const raw::Gate::ptr &gate : gates)
     {
-        auto node = graph->strToNode.at(gate->name);
-        for (const auto &name : gate->fanInNames)
+        leda::node node = graph->strToNode.at(gate->name);
+        for (const std::string &name : gate->fanInNames)
             graph->ledaGraph.new_edge(graph->strToNode.at(name), node, std::numeric_limits<int>::max());
     }
 

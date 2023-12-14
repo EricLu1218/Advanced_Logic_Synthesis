@@ -11,7 +11,7 @@ leda::edge Decomposer::getSmallestLevelEdge(process::Graph *graph, const leda::l
     leda::edge edge, minEdge = nullptr;
     forall(edge, edgeList)
     {
-        auto level = graph->ledaGraph.inf(graph->ledaGraph.source(edge))->level;
+        int level = graph->ledaGraph.inf(graph->ledaGraph.source(edge))->level;
         if (minLevel > level)
         {
             minLevel = level;
@@ -37,12 +37,12 @@ void Decomposer::decompose(process::Graph *graph)
         std::string curName = graph->ledaGraph.inf(node)->name;
         int suffix = 0;
 
-        auto inEdgeList = graph->ledaGraph.in_edges(node);
+        leda::list<leda::graph::edge> inEdgeList = graph->ledaGraph.in_edges(node);
         while (inEdgeList.size() > 2)
         {
-            auto inEdge1 = getSmallestLevelEdge(graph, inEdgeList);
+            leda::edge inEdge1 = getSmallestLevelEdge(graph, inEdgeList);
             inEdgeList.remove(inEdge1);
-            auto inEdge2 = getSmallestLevelEdge(graph, inEdgeList);
+            leda::edge inEdge2 = getSmallestLevelEdge(graph, inEdgeList);
             inEdgeList.remove(inEdge2);
 
             std::string legalName;
@@ -56,10 +56,10 @@ void Decomposer::decompose(process::Graph *graph)
                 }
                 ++suffix;
             }
-            auto maxLevel = std::max(graph->ledaGraph.inf(graph->ledaGraph.source(inEdge1))->level,
-                                     graph->ledaGraph.inf(graph->ledaGraph.source(inEdge2))->level);
-            auto nodeInfo = new process::NodeInfo(legalName, graph->ledaGraph.inf(node)->type, maxLevel + 1);
-            auto newNode = graph->ledaGraph.new_node(nodeInfo);
+            int maxLevel = std::max(graph->ledaGraph.inf(graph->ledaGraph.source(inEdge1))->level,
+                                    graph->ledaGraph.inf(graph->ledaGraph.source(inEdge2))->level);
+            process::NodeInfo *nodeInfo = new process::NodeInfo(legalName, graph->ledaGraph.inf(node)->type, maxLevel + 1);
+            leda::graph::node newNode = graph->ledaGraph.new_node(nodeInfo);
             graph->strToNode.emplace(legalName, newNode);
             graph->nodeInfos.emplace_back(nodeInfo);
             graph->ledaGraph.move_edge(inEdge1, graph->ledaGraph.source(inEdge1), newNode);

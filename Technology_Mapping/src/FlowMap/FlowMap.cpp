@@ -35,29 +35,29 @@ bool FlowMap::createSubGraph(const leda::node &target)
     clearSubGraph();
 
     subGraph.predecessors.emplace(target);
-    auto info = graph.ledaGraph.inf(target);
+    process::NodeInfo *info = graph.ledaGraph.inf(target);
     subGraph.target = subGraph.ledaGraph.new_node(info);
     graphToSubGraph.emplace(target, subGraph.target);
     subGraphToGraph.emplace(subGraph.target, target);
 
     leda::node_array<bool> visited(graph.ledaGraph, false);
-    auto edgeList = graph.ledaGraph.in_edges(target);
+    leda::list<leda::graph::edge> edgeList = graph.ledaGraph.in_edges(target);
     while (!edgeList.empty())
     {
-        auto edge = edgeList.pop_back();
-        auto node = graph.ledaGraph.source(edge);
+        leda::graph::edge edge = edgeList.pop_back();
+        leda::node node = graph.ledaGraph.source(edge);
 
         if (!visited[node])
         {
             visited[node] = true;
             subGraph.predecessors.emplace(node);
-            auto info = graph.ledaGraph.inf(node);
-            auto newNode = subGraph.ledaGraph.new_node(info);
+            process::NodeInfo *info = graph.ledaGraph.inf(node);
+            leda::graph::node newNode = subGraph.ledaGraph.new_node(info);
             graphToSubGraph.emplace(node, newNode);
             subGraphToGraph.emplace(newNode, node);
 
             leda::edge inEdge;
-            auto inEdgeList = graph.ledaGraph.in_edges(node);
+            leda::list<leda::graph::edge> inEdgeList = graph.ledaGraph.in_edges(node);
             forall(inEdge, inEdgeList)
             {
                 edgeList.push_back(inEdge);
@@ -85,10 +85,10 @@ int FlowMap::getMaxFanInLabel(const leda::node &target) const
 {
     int maxFanInLabel = std::numeric_limits<int>::min();
     leda::edge inEdge;
-    auto inEdgeList = subGraph.ledaGraph.in_edges(target);
+    leda::list<leda::graph::edge> inEdgeList = subGraph.ledaGraph.in_edges(target);
     forall(inEdge, inEdgeList)
     {
-        auto node = subGraph.ledaGraph.source(inEdge);
+        leda::node node = subGraph.ledaGraph.source(inEdge);
         if (maxFanInLabel < subGraph.ledaGraph.inf(node)->label)
             maxFanInLabel = subGraph.ledaGraph.inf(node)->label;
     }
@@ -98,7 +98,7 @@ int FlowMap::getMaxFanInLabel(const leda::node &target) const
 void FlowMap::collapse(int maxFanInLabel)
 {
     std::unordered_set<leda::node> fanInNodes;
-    auto nodeList = subGraph.ledaGraph.all_nodes();
+    leda::list<leda::graph::node> nodeList = subGraph.ledaGraph.all_nodes();
     nodeList.remove(subGraph.source);
     nodeList.remove(subGraph.target);
 
@@ -108,10 +108,10 @@ void FlowMap::collapse(int maxFanInLabel)
         if (subGraph.ledaGraph.inf(node)->label == maxFanInLabel)
         {
             leda::edge inEdge;
-            auto inEdgeList = subGraph.ledaGraph.in_edges(node);
+            leda::list<leda::graph::edge> inEdgeList = subGraph.ledaGraph.in_edges(node);
             forall(inEdge, inEdgeList)
             {
-                auto sourceNode = subGraph.ledaGraph.source(inEdge);
+                leda::node sourceNode = subGraph.ledaGraph.source(inEdge);
                 if (subGraph.ledaGraph.inf(sourceNode)->label != maxFanInLabel)
                     fanInNodes.emplace(sourceNode);
             }
@@ -122,30 +122,30 @@ void FlowMap::collapse(int maxFanInLabel)
     }
 
     leda::edge inEdge;
-    auto inEdgeList = subGraph.ledaGraph.in_edges(subGraph.target);
+    leda::list<leda::graph::edge> inEdgeList = subGraph.ledaGraph.in_edges(subGraph.target);
     forall(inEdge, inEdgeList)
     {
-        auto node = subGraph.ledaGraph.source(inEdge);
+        leda::node node = subGraph.ledaGraph.source(inEdge);
         if (subGraph.ledaGraph.inf(node)->label != maxFanInLabel && fanInNodes.count(node) == 1)
             fanInNodes.erase(node);
     }
 
-    for (auto fanInNode : fanInNodes)
+    for (leda::node fanInNode : fanInNodes)
         subGraph.ledaGraph.new_edge(fanInNode, subGraph.target, std::numeric_limits<int>::max());
 }
 
 void FlowMap::splitNodes()
 {
-    auto nodeList = subGraph.ledaGraph.all_nodes();
+    leda::list<leda::graph::node> nodeList = subGraph.ledaGraph.all_nodes();
     nodeList.remove(subGraph.source);
     nodeList.remove(subGraph.target);
 
     leda::node node;
     forall(node, nodeList)
     {
-        auto duplicateNode = subGraph.ledaGraph.new_node(nullptr);
+        leda::graph::node duplicateNode = subGraph.ledaGraph.new_node(nullptr);
         leda::edge outEdge;
-        auto outEdgeList = subGraph.ledaGraph.out_edges(node);
+        leda::list<leda::graph::edge> outEdgeList = subGraph.ledaGraph.out_edges(node);
         forall(outEdge, outEdgeList)
         {
             subGraph.ledaGraph.move_edge(outEdge, duplicateNode, subGraph.ledaGraph.target(outEdge));
@@ -168,7 +168,7 @@ std::unordered_set<leda::node> FlowMap::getXBar(leda::edge_array<int> flow) cons
     leda::node_array<bool> visited(subGraph.ledaGraph, false);
     while (!nodeStack.empty())
     {
-        auto node = nodeStack.top();
+        leda::node node = nodeStack.top();
         nodeStack.pop();
 
         if (!visited[node])
@@ -177,13 +177,13 @@ std::unordered_set<leda::node> FlowMap::getXBar(leda::edge_array<int> flow) cons
             if (subGraph.ledaGraph.inf(node) != nullptr)
                 xBar.erase(subGraphToGraph.at(node));
 
-            auto inEdgeList = subGraph.ledaGraph.in_edges(node);
+            leda::list<leda::graph::edge> inEdgeList = subGraph.ledaGraph.in_edges(node);
             forall(edge, inEdgeList)
             {
                 if (flow[edge] == 0 || flow[edge] != std::numeric_limits<int>::max())
                     nodeStack.push(subGraph.ledaGraph.source(edge));
             }
-            auto outEdgeList = subGraph.ledaGraph.out_edges(node);
+            leda::list<leda::graph::edge> outEdgeList = subGraph.ledaGraph.out_edges(node);
             forall(edge, outEdgeList)
             {
                 if (flow[edge] != 0)
@@ -199,7 +199,7 @@ void FlowMap::labelingPhase()
     leda::list<leda::node> topologyList;
     leda::TOPSORT(graph.ledaGraph, topologyList);
     topologyList.remove(graph.source);
-    for (auto node : graph.primaryInputNodes)
+    for (leda::node node : graph.primaryInputNodes)
     {
         graph.ledaGraph.inf(node)->label = 0;
         topologyList.remove(node);
@@ -207,13 +207,13 @@ void FlowMap::labelingPhase()
 
     while (!topologyList.empty())
     {
-        auto target = topologyList.front();
+        leda::graph::node target = topologyList.front();
         topologyList.pop_front();
 
         if (createSubGraph(target) == false) // for const 0, const 1
             continue;
 
-        auto maxFanInLabel = getMaxFanInLabel(target);
+        int maxFanInLabel = getMaxFanInLabel(target);
         collapse(maxFanInLabel);
         splitNodes();
         leda::edge_array<int> capacity = subGraph.ledaGraph.edge_data();
@@ -236,13 +236,13 @@ process::Lut::ptr FlowMap::getLut(const leda::node &target) const
 {
     /*  get LUT input  */
     std::unordered_set<leda::node> lutInputs;
-    const auto &xBar = graph.ledaGraph.inf(target)->xBar;
-    auto edgeList = graph.ledaGraph.in_edges(target);
+    const std::unordered_set<leda::node> &xBar = graph.ledaGraph.inf(target)->xBar;
+    leda::list<leda::graph::edge> edgeList = graph.ledaGraph.in_edges(target);
     leda::node_array<bool> visited(graph.ledaGraph, false);
     while (!edgeList.empty())
     {
-        auto edge = edgeList.pop_back();
-        auto node = graph.ledaGraph.source(edge);
+        leda::graph::edge edge = edgeList.pop_back();
+        leda::node node = graph.ledaGraph.source(edge);
         if (!visited[node])
         {
             visited[node] = true;
@@ -253,7 +253,7 @@ process::Lut::ptr FlowMap::getLut(const leda::node &target) const
             else
             {
                 leda::edge inEdge;
-                auto inEdgeList = graph.ledaGraph.in_edges(node);
+                leda::list<leda::graph::edge> inEdgeList = graph.ledaGraph.in_edges(node);
                 forall(inEdge, inEdgeList)
                 {
                     edgeList.push_back(inEdge);
@@ -263,11 +263,11 @@ process::Lut::ptr FlowMap::getLut(const leda::node &target) const
     }
 
     /* generate LUT and calculate logic function */
-    auto lut = new process::Lut(graph.ledaGraph.inf(target)->name);
+    process::Lut *lut = new process::Lut(graph.ledaGraph.inf(target)->name);
     size_t logicSize = std::pow(2, lutInputs.size());
     std::unordered_map<leda::node, std::vector<int>> nodeToOutputLogics;
     size_t idx = maxLutInputSize - lutInputs.size();
-    for (const auto &input : lutInputs)
+    for (const leda::node &input : lutInputs)
     {
         lut->inputNames.emplace_back(graph.ledaGraph.inf(input)->name);
         std::vector<int> outputLogics;
@@ -280,14 +280,14 @@ process::Lut::ptr FlowMap::getLut(const leda::node &target) const
     std::vector<leda::node> nodes(xBar.begin(), xBar.end());
     std::sort(nodes.begin(), nodes.end(), [&](const leda::node &a, const leda::node &b) -> bool
               { return graph.ledaGraph.inf(a)->level < graph.ledaGraph.inf(b)->level; });
-    for (const auto &node : nodes)
+    for (const leda::node &node : nodes)
     {
         std::vector<int> outputLogics;
-        const auto type = graph.ledaGraph.inf(node)->type;
+        const process::NodeInfo::Type type = graph.ledaGraph.inf(node)->type;
 
         std::vector<leda::node> inputNodes;
         leda::edge inEdge;
-        auto inEdgeList = graph.ledaGraph.in_edges(node);
+        leda::list<leda::graph::edge> inEdgeList = graph.ledaGraph.in_edges(node);
         forall(inEdge, inEdgeList)
         {
             inputNodes.emplace_back(graph.ledaGraph.source(inEdge));
@@ -303,13 +303,13 @@ process::Lut::ptr FlowMap::getLut(const leda::node &target) const
         {
             outputLogics = nodeToOutputLogics.at(inputNodes.at(0));
             if (type == process::NodeInfo::Type::NOT)
-                for (auto &it : outputLogics)
+                for (int &it : outputLogics)
                     it = !it;
         }
         else
         {
-            const auto &input1 = nodeToOutputLogics.at(inputNodes.at(0)),
-                       &input2 = nodeToOutputLogics.at(inputNodes.at(1));
+            const std::vector<int> &input1 = nodeToOutputLogics.at(inputNodes.at(0));
+            const std::vector<int> &input2 = nodeToOutputLogics.at(inputNodes.at(1));
             if (type == process::NodeInfo::Type::AND)
                 for (size_t i = 0; i < logicSize; ++i)
                     outputLogics.emplace_back(input1[i] & input2[i]);
@@ -323,7 +323,7 @@ process::Lut::ptr FlowMap::getLut(const leda::node &target) const
 
     /*  change the logic function with all true/false to const 1/0  */
     size_t logicSum = 0;
-    for (const auto &outputLogic : lut->outputLogics)
+    for (int outputLogic : lut->outputLogics)
         logicSum += outputLogic;
     if (logicSum == 0)
     {
@@ -341,20 +341,20 @@ process::Lut::ptr FlowMap::getLut(const leda::node &target) const
 std::vector<process::Lut::ptr> FlowMap::mappingPhase()
 {
     std::stack<leda::node> nodeStack;
-    for (auto node : graph.primaryOutputNodes)
+    for (leda::node node : graph.primaryOutputNodes)
         nodeStack.push(node);
 
     std::vector<process::Lut::ptr> luts;
     std::unordered_set<leda::node> haveMapped;
     while (!nodeStack.empty())
     {
-        auto node = nodeStack.top();
+        leda::node node = nodeStack.top();
         nodeStack.pop();
         if (graph.ledaGraph.inf(node)->type == process::NodeInfo::Type::PI || haveMapped.count(node))
             continue;
 
-        auto lut = getLut(node);
-        for (auto input : lut->inputNames)
+        process::Lut::ptr lut = getLut(node);
+        for (std::string input : lut->inputNames)
             nodeStack.push(graph.strToNode.at(input));
         luts.emplace_back(std::move(lut));
         haveMapped.emplace(node);
@@ -366,14 +366,14 @@ int FlowMap::calCircuitLevel(std::vector<process::Lut::ptr> &luts) const
 {
     leda::GRAPH<process::Lut *, int> lutGraph;
     std::unordered_map<std::string, leda::node> strToLutNode;
-    for (const auto &node : graph.primaryInputNodes)
+    for (const leda::node &node : graph.primaryInputNodes)
         strToLutNode.emplace(graph.ledaGraph.inf(node)->name, lutGraph.new_node(nullptr));
 
-    for (const auto &lut : luts)
+    for (const process::Lut::ptr &lut : luts)
         strToLutNode.emplace(lut->name, lutGraph.new_node(lut.get()));
 
-    for (const auto &lut : luts)
-        for (const auto &inputName : lut->inputNames)
+    for (const process::Lut::ptr &lut : luts)
+        for (const std::string &inputName : lut->inputNames)
             lutGraph.new_edge(strToLutNode.at(inputName), strToLutNode.at(lut->name), 0);
 
     int circuitLevel = 0;
@@ -387,10 +387,10 @@ int FlowMap::calCircuitLevel(std::vector<process::Lut::ptr> &luts) const
 
         int maxLevel = 0;
         leda::edge inEdge;
-        auto inEdgeList = lutGraph.in_edges(node);
+        leda::list<leda::graph::edge> inEdgeList = lutGraph.in_edges(node);
         forall(inEdge, inEdgeList)
         {
-            auto inNode = lutGraph.source(inEdge);
+            leda::node inNode = lutGraph.source(inEdge);
             maxLevel = std::max(maxLevel, nodeToLevel[inNode]);
         }
         nodeToLevel[node] = maxLevel + 1;
@@ -401,10 +401,10 @@ int FlowMap::calCircuitLevel(std::vector<process::Lut::ptr> &luts) const
 
 FlowMap::FlowMap(process::Graph *graph_, int maxLutInputSize) : graph(*graph_), maxLutInputSize(maxLutInputSize)
 {
-    auto nodeInfo = new process::NodeInfo("source", process::NodeInfo::Type::NONE);
+    process::NodeInfo *nodeInfo = new process::NodeInfo("source", process::NodeInfo::Type::NONE);
     graph.source = graph.ledaGraph.new_node(nodeInfo);
     graph.nodeInfos.emplace_back(nodeInfo);
-    for (auto node : graph.primaryInputNodes)
+    for (leda::node node : graph.primaryInputNodes)
         graph.ledaGraph.new_edge(graph.source, node, std::numeric_limits<int>::max());
     createTruthTable(maxLutInputSize);
 }
@@ -412,16 +412,16 @@ FlowMap::FlowMap(process::Graph *graph_, int maxLutInputSize) : graph(*graph_), 
 ResultWriter::ptr FlowMap::solve()
 {
     labelingPhase();
-    auto luts = mappingPhase();
-    auto circuitLevel = calCircuitLevel(luts);
+    std::vector<process::Lut::ptr> luts = mappingPhase();
+    int circuitLevel = calCircuitLevel(luts);
     std::cout << "The circuit level is " << circuitLevel << ".\n"
               << "The number of LUTs is " << luts.size() << ".\n";
 
     std::vector<std::string> primaryInputNames;
-    for (const auto &node : graph.primaryInputNodes)
+    for (const leda::node &node : graph.primaryInputNodes)
         primaryInputNames.emplace_back(graph.ledaGraph.inf(node)->name);
     std::vector<std::string> primaryOutputNames;
-    for (const auto &node : graph.primaryOutputNodes)
+    for (const leda::node &node : graph.primaryOutputNodes)
         primaryOutputNames.emplace_back(graph.ledaGraph.inf(node)->name);
     return std::unique_ptr<ResultWriter>(
         new ResultWriter(graph.name, std::move(primaryInputNames),

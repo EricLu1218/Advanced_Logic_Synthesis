@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
     Parser parser;
     parser.readBlif(argParser.inputFilepath);
-    auto graph = parser.getGraph();
+    process::Graph::ptr graph = parser.getGraph();
 
     timer.stopTimer("parse input");
     timer.startTimer("decompose");
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     timer.startTimer("flow map");
 
     FlowMap flowMap(graph.get(), argParser.maxLutInputSize);
-    auto result = flowMap.solve();
+    ResultWriter::ptr result = flowMap.solve();
 
     timer.stopTimer("flow map");
     timer.startTimer("write output");
